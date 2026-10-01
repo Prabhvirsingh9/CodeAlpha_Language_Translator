@@ -1,0 +1,268 @@
+/* ---------- Basic setup ---------- */
+:root {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #5b6475;
+  --border: #d5dae5;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --error-bg: #fdecec;
+  --error-border: #f3b8b8;
+  --error-text: #9b1c1c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  /* The Noto fonts cover Hindi, Bengali and Arabic text */
+  font-family: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Bengali",
+               "Noto Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 1.9rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+label,
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ---------- Language selectors ---------- */
+.language-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.field {
+  flex: 1;
+  min-width: 0; /* stops the select from overflowing on small screens */
+}
+
+select,
+textarea,
+.output {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+}
+
+select {
+  padding: 10px 12px;
+}
+
+.swap-button {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--accent);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.swap-button:hover:not(:disabled) {
+  background: #eef3ff;
+}
+
+/* ---------- Input and output ---------- */
+.panels {
+  display: flex;
+  gap: 16px;
+}
+
+.panel {
+  flex: 1;
+  min-width: 0;
+}
+
+textarea {
+  display: block;
+  min-height: 180px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.output {
+  min-height: 180px;
+  padding: 12px;
+  background: #f8f9fc;
+  white-space: pre-wrap;      /* keeps line breaks from the translation */
+  overflow-wrap: anywhere;    /* long words never cause sideways scrolling */
+}
+
+.output:empty::before {
+  content: "Your translation will appear here";
+  color: var(--muted);
+}
+
+.counter {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ---------- Buttons ---------- */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  background: #f1f3f8;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Visible keyboard focus */
+:focus-visible {
+  outline: 3px solid #93b4f8;
+  outline-offset: 2px;
+}
+
+/* ---------- Messages ---------- */
+.status {
+  min-height: 1.4em;
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.error {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  background: var(--error-bg);
+  color: var(--error-text);
+  font-size: 0.95rem;
+}
+
+.error[hidden] {
+  display: none;
+}
+
+footer {
+  padding: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 700px) {
+  .container {
+    padding: 20px 12px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  /* Stack the selectors and the text areas */
+  .language-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .swap-button {
+    align-self: center;
+    transform: rotate(90deg);
+  }
+
+  .panels {
+    flex-direction: column;
+  }
+
+  textarea,
+  .output {
+    min-height: 140px;
+  }
+
+  .btn {
+    flex: 1 1 auto;
+  }
+
+  .btn-primary {
+    flex-basis: 100%;
+  }
+}

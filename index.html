@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Translator</title>
+
+  <!-- Noto fonts so Hindi, Bengali and Arabic display correctly -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Bengali:wght@400;600&family=Noto+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Language Translator</h1>
+      <p class="subtitle">Translate text between languages in seconds.</p>
+    </header>
+
+    <section class="card">
+      <!-- Language selectors (options are added by script.js) -->
+      <div class="language-row">
+        <div class="field">
+          <label for="sourceLanguage">Translate from</label>
+          <select id="sourceLanguage"></select>
+        </div>
+
+        <button type="button" id="swapButton" class="swap-button"
+                aria-label="Swap languages" title="Swap languages">⇄</button>
+
+        <div class="field">
+          <label for="targetLanguage">Translate to</label>
+          <select id="targetLanguage"></select>
+        </div>
+      </div>
+
+      <!-- Input and output -->
+      <div class="panels">
+        <div class="panel">
+          <label for="inputText">Enter text</label>
+          <textarea id="inputText" dir="auto" maxlength="2000"
+                    placeholder="Type or paste your text here..."></textarea>
+          <div id="charCount" class="counter">0 / 2000 characters</div>
+        </div>
+
+        <div class="panel">
+          <span id="outputLabel" class="label">Translation</span>
+          <!-- Keep this div empty in the HTML so the placeholder text shows -->
+          <div id="outputText" class="output" dir="auto" aria-labelledby="outputLabel"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="translateButton" class="btn btn-primary">Translate</button>
+        <button type="button" id="copyButton" class="btn" disabled>Copy Translation</button>
+        <button type="button" id="clearButton" class="btn">Clear</button>
+      </div>
+
+      <!-- Status messages (loading, copied) and errors are read out by screen readers -->
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <p id="errorMessage" class="error" role="alert" hidden></p>
+    </section>
+  </main>
+
+  <footer>Built with HTML, CSS &amp; JavaScript</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
